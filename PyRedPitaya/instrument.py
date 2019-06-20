@@ -186,7 +186,6 @@ class Decimation(UnsignedInteger):
     def __init__(self):
         super(Decimation, self).__init__(size=32)
     def to_binary(self, val):
-        assert val in [1,8, 64,1024,8192,65536], "Value is  {val}. It should be in 1,8, 64,1024,8192,65536".format(val=val)
         return super(Decimation, self).to_binary(val)
 
 
