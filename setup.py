@@ -64,6 +64,8 @@ setup(
     description="Python utilities for redpitaya",
     author="Pierre Cladé",
     author_email="pierre.clade@upmc.fr",
+    maintainer="Bastian Leykauf",
+    maintainer_email="leykauf@physik.hu-berlin,de",
     long_description=long_description,
     long_description_content_type="text/rst",
     packages=["PyRedPitaya", "PyRedPitaya.enum"],
