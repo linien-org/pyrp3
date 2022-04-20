@@ -1,10 +1,3 @@
-import ctypes
-import sys
-from ctypes import *
-
-import numpy as np
-
-
 class MemoryInterface(object):
     def __init__(self, addr_base=0x00000000, parent_memory=None):
         self.addr_base = addr_base
