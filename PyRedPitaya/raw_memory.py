@@ -3,10 +3,7 @@ from ctypes import POINTER, c_uint32, cast, cdll, create_string_buffer, sizeof
 
 import numpy as np
 
-if "PyRedPitayaTest" in list(sys.modules.keys()):
-    from PyRedPitayaTest import libmonitor_file
-else:
-    libmonitor_file = "libmonitor.so"
+libmonitor_file = "libmonitor.so"
 
 libmonitor = cdll.LoadLibrary(libmonitor_file)
 libmonitor.read_value.restype = c_uint32
