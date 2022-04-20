@@ -11,11 +11,9 @@ class EnumMetaclass(type):
         green = 2
         blue = 3
 
-    Now, Color.red, Color.green and Color.blue behave totally
-    different: they are enumerated values, not integers.
-
-    Enumerations cannot be instantiated; however they can be
-    subclassed.
+    Now, Color.red, Color.green and Color.blue behave totally different: they are
+    enumerated values, not integers. Enumerations cannot be instantiated; however they
+    can be subclassed.
     """
 
     def __init__(cls, name, bases, dict):
@@ -79,11 +77,10 @@ class FullEnumMetaclass(EnumMetaclass):
 class EnumInstance(int):
     """Class to represent an enumeration value.
 
-    EnumInstance('Color', 'red', 12) prints as 'Color.red' and behaves
-    like the integer 12 when compared, but doesn't support arithmetic.
+    EnumInstance('Color', 'red', 12) prints as 'Color.red' and behaves like the integer
+    12 when compared, but doesn't support arithmetic.
 
-    XXX Should it record the actual enumeration rather than just its
-    name?
+    XXX Should it record the actual enumeration rather than just its name?
     """
 
     def __new__(cls, classname, enumname, value):

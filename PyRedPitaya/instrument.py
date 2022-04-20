@@ -1,11 +1,10 @@
-from math import log, ceil
+from math import ceil, log
 
 import numpy as np
 from myhdl import intbv
 
-
-from .memory import MemoryInterface
 from .enum import Enum
+from .memory import MemoryInterface
 
 
 class UnsignedInteger(object):
@@ -249,7 +248,7 @@ class Scope(MemoryInterface):
     dac2_on_ch1 = GetSetBit(0x50, pos=0)
     dac1_on_ch2 = GetSetBit(0x50, pos=1)
 
-    #### Function specific to read the array of data
+    ## Function specific to read the array of data
     def get_rawdata(self, addr):
         x = self.reads(addr, self.data_length)
         y = x.copy()
@@ -430,8 +429,10 @@ class ASG(MemoryInterface):
 
     @property
     def counter_step(self):
-        """Each clock cycle the counter_step is increases the internal counter modulo counter_wrap.
-        The current counter step rightshifted by 16 bits is the index of the value that is chosen from the data table.
+        """
+        Each clock cycle the counter_step is increases the internal counter modulo
+        counter_wrap. The current counter step rightshifted by 16 bits is the index of
+        the value that is chosen from the data table.
         """
         v = self.read(self.value_offset + 0x10)
         return v & 0x3FFFFFFF
@@ -474,7 +475,9 @@ class ASG(MemoryInterface):
 
     @property
     def lastpoint(self):
-        """the last point before the output jumps back to the zero/wrapped index value"""
+        """
+        The last point before the output jumps back to the zero/wrapped index value.
+        """
         return self.counter_wrap / self.counter_step
 
     @property
@@ -618,8 +621,9 @@ class RedPitaya(object):
 #    pass
 
 if __name__ == "__main__":
+    from time import sleep, time
+
     import rpyc
-    from time import time, sleep
 
     #    conn = rpyc.connect('134.157.6.206', 18861)
     #    red_pitaya = PCRedPitaya(remote_connection = conn)

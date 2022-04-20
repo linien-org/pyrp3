@@ -1,6 +1,7 @@
-import sys
 import ctypes
+import sys
 from ctypes import *
+
 import numpy as np
 
 
