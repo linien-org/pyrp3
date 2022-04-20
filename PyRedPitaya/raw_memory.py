@@ -1,15 +1,14 @@
 import sys
-import ctypes
-from ctypes import *
+from ctypes import POINTER, c_uint32, cast, cdll, create_string_buffer, sizeof
+
 import numpy as np
-from time import time
 
 if "PyRedPitayaTest" in list(sys.modules.keys()):
     from PyRedPitayaTest import libmonitor_file
 else:
     libmonitor_file = "libmonitor.so"
 
-libmonitor = ctypes.cdll.LoadLibrary(libmonitor_file)
+libmonitor = cdll.LoadLibrary(libmonitor_file)
 libmonitor.read_value.restype = c_uint32
 
 # TODO
@@ -32,8 +31,8 @@ class BoardRawMemory(object):
 
         output : either an array on uint32 or a string buffer"""
         #        t0 = time()
-        buf = create_string_buffer(sizeof(ctypes.c_uint32) * length)
-        self.a.read_values(addr, cast(buf, POINTER(ctypes.c_uint32)), length)
+        buf = create_string_buffer(sizeof(c_uint32) * length)
+        self.a.read_values(addr, cast(buf, POINTER(c_uint32)), length)
         #        print "Time :",time()-t0
         if return_buffer:
             return buf.raw
@@ -47,9 +46,10 @@ class BoardRawMemory(object):
     def writes(self, addr, values):
         """Write length words in memory
 
-        input : values should be a list, np.array of numbers or a str (interpreted as a string buffer)"""
+        input : values should be a list, np.array of numbers or a str (interpreted as a
+            string buffer)"""
         if not isinstance(values, str):
             values = np.array(values, dtype="uint32")
             values = str(values.data)
         buf = create_string_buffer(values)
-        self.a.write_values(addr, cast(buf, POINTER(ctypes.c_uint32)), len(values) // 4)
+        self.a.write_values(addr, cast(buf, POINTER(c_uint32)), len(values) // 4)
