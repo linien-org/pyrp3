@@ -39,7 +39,7 @@ class EnumMetaclass(type):
         enumbases = [
             base.__name__
             for base in cls.__bases__
-            if isinstance(base, EnumMetaclass) and not base is Enum
+            if isinstance(base, EnumMetaclass) and base is not Enum
         ]
         if enumbases:
             s1 = "(%s)" % ", ".join(enumbases)
@@ -72,7 +72,7 @@ class FullEnumMetaclass(EnumMetaclass):
                 cls._reverse_dct.update(obj._reverse_dct)
                 for attr in obj._members:
                     # XXX inefficient
-                    if not attr in cls._members:
+                    if attr not in cls._members:
                         cls._members.append(attr)
 
 
