@@ -1,4 +1,3 @@
-import sys
 from ctypes import POINTER, c_uint32, cast, cdll, create_string_buffer, sizeof
 
 import numpy as np
