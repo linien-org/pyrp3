@@ -1,11 +1,8 @@
 import os
-
-from distutils.core import setup
 from distutils.command.build import build
 from distutils.command.install import install
-
+from distutils.core import setup
 from pathlib import Path
-
 
 from PyRedPitaya import __version__
 
