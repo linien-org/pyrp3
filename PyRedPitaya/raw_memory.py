@@ -1,12 +1,12 @@
 from ctypes import POINTER, c_uint32, cast, cdll, create_string_buffer, sizeof
+from importlib.machinery import EXTENSION_SUFFIXES
+from pathlib import Path
 
 import numpy as np
-from pathlib import Path
-from importlib.machinery import EXTENSION_SUFFIXES
 
-libmonitor_file = str(Path(__file__).parent / '..' / 'monitor{}'.format(
-    EXTENSION_SUFFIXES[0]
-))
+libmonitor_file = str(
+    Path(__file__).parent / ".." / "monitor{}".format(EXTENSION_SUFFIXES[0])
+)
 
 libmonitor = cdll.LoadLibrary(libmonitor_file)
 libmonitor.read_value.restype = c_uint32

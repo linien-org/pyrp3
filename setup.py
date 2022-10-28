@@ -1,7 +1,7 @@
 import os
 from distutils.command.build import build
 from distutils.command.install import install
-from distutils.core import setup, Extension
+from distutils.core import Extension, setup
 from pathlib import Path
 
 from PyRedPitaya import __version__
@@ -35,5 +35,5 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords=["redpitaya", "FPGA", "zynq"],
-    ext_modules=[Extension('monitor',['monitor/monitor.c'])]
+    ext_modules=[Extension("monitor", ["monitor/monitor.c"])],
 )
