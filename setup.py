@@ -6,7 +6,7 @@ long_description = (this_directory / "README.rst").read_text()
 
 setup(
     name="PyRedPitaya",
-    use_scm_version={"write_to": "_version.py"},
+    use_scm_version={"write_to": "PyRedPitaya/_version.py"},
     setup_requires=["setuptools_scm"],
     description="Python utilities for redpitaya",
     author="Pierre Cladé",

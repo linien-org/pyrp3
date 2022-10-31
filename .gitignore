@@ -204,7 +204,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-
 # Custom rules
 PyRedPitaya/_version.py
-
