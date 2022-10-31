@@ -1,6 +1,3 @@
-import os
-from distutils.command.build import build
-from distutils.command.install import install
 from distutils.core import Extension, setup
 from pathlib import Path
 
