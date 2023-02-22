@@ -12,7 +12,7 @@ setup(
     author="Pierre Cladé",
     author_email="pierre.clade@upmc.fr",
     maintainer="Bastian Leykauf",
-    maintainer_email="leykauf@physik.hu-berlin,de",
+    maintainer_email="leykauf@physik.hu-berlin.de",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     packages=["pyrp3", "pyrp3.enum"],
