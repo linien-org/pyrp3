@@ -1,6 +1,6 @@
 pyrp3
 =======
-Python 3 port (using 2to3) of `PyRedPitaya <https://github.com/clade/PyRedPitaya>`_ library.
+Python 3 port (using 2to3) of `PyRedPitaya <https://github.com/clade/PyRedPitaya>`_ library in the pyrp3 namespace.
 
 Note: The following is a copy of the readme from the original repo and might not work 
 with this version of the library.
@@ -17,16 +17,12 @@ An rpyc server is used in order to communicate with your computer. The interface
 Installation
 ============
 
-The process to install PyRedPitaya on the board requires the installation of Python first. See `this link <https://github.com/clade/RedPitaya/tree/master/python>`_.
+The process to install pyrp3 on the board requires the installation of Python first. See `this link <https://github.com/clade/RedPitaya/tree/master/python>`_.
 
 
-To install PyRedPitaya on the computer download the package and run the command:: 
+To install pyrp3 on the computer run the command:: 
 
-  python setup.py install
-
-or use easy_install::
-
-  easy_install PyRedPitaya
+  pip3 install pyrp3
 
 
 Usage
@@ -41,18 +37,18 @@ Logging onto the redpitaya using ssh, one can start the ipython shell and run :
 
 .. code ::
 
-    from PyRedPitaya.board import RedPitaya
+    from pyrp3.board import RedPitaya
 
     redpitaya = RedPitaya()
 
-    print redpitaya.ams.temp # Read property
+    print(redpitaya.ams.temp) # Read property
     redpitaya.hk.led = 0b10101010 # Write property
 
 
 Remote access
 -------------
 
-You need to install the PyRedPitaya package on your PC as well as Rpyc: 
+You need to install the pyrp3 package on your PC as well as Rpyc: 
 
 .. code::
 
@@ -63,14 +59,14 @@ On the computer (replace REDPITAYA_IP by the string containing the IP address) :
 .. code::
 
     from rpyc import connect
-    from PyRedPitaya.pc import RedPitaya
+    from pyrp3.pc import RedPitaya
 
     conn = connect(REDPITAYA_IP, port=18861)
     redpitaya = RedPitaya(conn)
 
-    print redpitaya.read(0x40000000) # Direct access
+    print(redpitaya.read(0x40000000)) # Direct access
 
-    print redpitaya.ams.temp # Read property
+    print(redpitaya.ams.temp) # Read property
     redpitaya.hk.led = 0b10101010 # Write property
 
     from time import sleep

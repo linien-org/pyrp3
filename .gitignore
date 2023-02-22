@@ -200,4 +200,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # Custom rules
-PyRedPitaya/_version.py
+pyrp3/_version.py
