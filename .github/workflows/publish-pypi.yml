@@ -22,3 +22,7 @@ jobs:
           pip install build
       - name: Build package
         run: python -m build
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN_PYRP3 }}
