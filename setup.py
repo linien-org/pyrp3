@@ -1,14 +1,13 @@
 from distutils.core import Extension, setup
 from pathlib import Path
 
-from PyRedPitaya import __version__
-
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.rst").read_text()
 
 setup(
     name="PyRedPitaya",
-    version=__version__,
+    use_scm_version={"write_to": "PyRedPitaya/_version.py"},
+    setup_requires=["setuptools_scm"],
     description="Python utilities for redpitaya",
     author="Pierre Cladé",
     author_email="pierre.clade@upmc.fr",
