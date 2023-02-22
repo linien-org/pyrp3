@@ -1,6 +1,6 @@
 pyrp3
 =======
-Python 3 port (using 2to3) of `PyRedPitaya <https://github.com/clade/PyRedPitaya>`_ library in the pyrp3 namespace.
+Python 3 port (using 2to3) of `PyRedPitaya <https://github.com/clade/PyRedPitaya>`_ library in the `pyrp3` namespace.
 
 Note: The following is a copy of the readme from the original repo and might not work 
 with this version of the library.
