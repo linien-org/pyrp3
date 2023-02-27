@@ -17,9 +17,6 @@ An rpyc server is used in order to communicate with your computer. The interface
 Installation
 ============
 
-The process to install pyrp3 on the board requires the installation of Python first. See `this link <https://github.com/clade/RedPitaya/tree/master/python>`_.
-
-
 To install pyrp3 on the computer run the command:: 
 
   pip3 install pyrp3
