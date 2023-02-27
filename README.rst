@@ -17,7 +17,7 @@ An rpyc server is used in order to communicate with your computer. The interface
 Installation
 ============
 
-To install pyrp3 on the computer run the command:: 
+To install pyrp3 on any machine, run the command:: 
 
   pip3 install pyrp3
 
