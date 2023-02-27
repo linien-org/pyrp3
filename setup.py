@@ -6,8 +6,7 @@ long_description = (this_directory / "README.rst").read_text()
 
 setup(
     name="pyrp3",
-    use_scm_version={"write_to": "pyrp3/_version.py"},
-    setup_requires=["setuptools_scm"],
+    version="1.1.0rc2",
     description="Python utilities for redpitaya",
     author="Pierre Cladé",
     author_email="pierre.clade@upmc.fr",
