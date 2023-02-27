@@ -6,7 +6,7 @@ long_description = (this_directory / "README.rst").read_text()
 
 setup(
     name="pyrp3",
-    version="1.1.0rc2",
+    version="1.1.0",
     description="Python utilities for redpitaya",
     author="Pierre Cladé",
     author_email="pierre.clade@upmc.fr",
@@ -17,13 +17,12 @@ setup(
     packages=["pyrp3", "pyrp3.enum"],
     install_requires=["myhdl", "rpyc", "cached_property", "numpy"],
     classifiers=[
-        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Intended Audience :: Education",
         "Intended Audience :: Other Audience",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
         "Topic :: Scientific/Engineering",
         "Topic :: Software Development",
         "Topic :: Software Development :: Libraries",
