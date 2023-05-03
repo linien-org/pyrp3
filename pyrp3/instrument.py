@@ -141,13 +141,6 @@ class GetSetBit:
         return instance.write(self.addr, int(new_value))
 
 
-# class EnumRegister(GetSetRegister):
-#    def __init__(self, addr, enum_type):
-#        assert issubclass(enum_type, Enum)
-#        register_type = EnumType(enum_type)
-#        super(EnumRegister, self).__init__(addr, register_type)
-
-
 class HK(MemoryInterface):
     def __init__(self, addr_base=0x40000000, **kwd):
         kwd["addr_base"] = addr_base
@@ -248,7 +241,7 @@ class Scope(MemoryInterface):
     dac2_on_ch1 = GetSetBit(0x50, pos=0)
     dac1_on_ch2 = GetSetBit(0x50, pos=1)
 
-    ## Function specific to read the array of data
+    # Function specific to read the array of data
     def get_rawdata(self, addr):
         x = self.reads(addr, self.data_length)
         y = x.copy()
@@ -613,21 +606,10 @@ class RedPitaya:
     asgb = InterfaceDescriptor(ASG, channel="B")
 
 
-# class BoardRedPitaya(RedPitaya, BoardRawMemory):
-#    pass
-
-
-# class PCRedPitaya(RedPitaya, ClientMemory):
-#    pass
-
 if __name__ == "__main__":
     from time import sleep, time
 
-    import rpyc
-
-    #    conn = rpyc.connect('134.157.6.206', 18861)
-    #    red_pitaya = PCRedPitaya(remote_connection = conn)
-    red_pitaya = BoardRedPitaya()
+    red_pitaya = RedPitaya()
     red_pitaya.scope.arm_trigger()
     red_pitaya.scope.trigger_source = 1
     sleep(1)
