@@ -57,23 +57,6 @@ class EnumMetaclass(type):
         return cls._reverse_dct[int(key)]
 
 
-class FullEnumMetaclass(EnumMetaclass):
-    """Metaclass for full enumerations.
-
-    A full enumeration displays all the values defined in base classes.
-    """
-
-    def __init__(cls, name, bases, dict):
-        super(FullEnumMetaclass, cls).__init__(name, bases, dict)
-        for obj in cls.__mro__:
-            if isinstance(obj, EnumMetaclass):
-                cls._reverse_dct.update(obj._reverse_dct)
-                for attr in obj._members:
-                    # XXX inefficient
-                    if attr not in cls._members:
-                        cls._members.append(attr)
-
-
 class EnumInstance(int):
     """Class to represent an enumeration value.
 
@@ -98,10 +81,6 @@ class EnumInstance(int):
 
 
 class Enum(metaclass=EnumMetaclass):
-    pass
-
-
-class FullEnum(metaclass=FullEnumMetaclass):
     pass
 
 
@@ -147,48 +126,5 @@ def _test():
     print(MergedColor)
 
 
-def _test2():
-    class Color(FullEnum):
-        RED = 1
-        GREEN = 2
-        BLUE = 3
-
-    print(Color.RED)
-
-    print(repr(Color.RED))
-    print(Color.RED == Color.RED)
-    print(Color.RED == Color.BLUE)
-    print(Color.RED == 1)
-    print(Color.RED == 2)
-
-    class ExtendedColor(Color):
-        WHITE = 0
-        ORANGE = 4
-        YELLOW = 5
-        PURPLE = 6
-        BLACK = 7
-
-    print(ExtendedColor.ORANGE)
-    print(ExtendedColor.RED)
-
-    print(Color.RED == ExtendedColor.RED)
-
-    class OtherColor(FullEnum):
-        WHITE = 4
-        BLUE = 5
-
-    class MergedColor(Color, OtherColor):
-        pass
-
-    print(MergedColor.RED)
-    print(MergedColor.WHITE)
-
-    print(Color)
-    print(ExtendedColor)
-    print(OtherColor)
-    print(MergedColor)
-
-
 if __name__ == "__main__":
     _test()
-    _test2()
