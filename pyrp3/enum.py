@@ -107,39 +107,39 @@ class FullEnum(metaclass=FullEnumMetaclass):
 
 def _test():
     class Color(Enum):
-        red = 1
-        green = 2
+        RED = 1
+        GREEN = 2
         blue = 3
 
     print(Color.red)
 
     print(repr(Color.red))
-    print(Color.red == Color.red)
-    print(Color.red == Color.blue)
-    print(Color.red == 1)
-    print(Color.red == 2)
+    print(Color.RED == Color.red)
+    print(Color.RED == Color.blue)
+    print(Color.RED == 1)
+    print(Color.RED == 2)
 
     class ExtendedColor(Color):
-        white = 0
-        orange = 4
-        yellow = 5
-        purple = 6
-        black = 7
+        WHITE = 0
+        ORANGE = 4
+        YELLOW = 5
+        PURPLE = 6
+        BLACK = 7
 
-    print(ExtendedColor.orange)
-    print(ExtendedColor.red)
+    print(ExtendedColor.ORANGE)
+    print(ExtendedColor.RED)
 
-    print(Color.red == ExtendedColor.red)
+    print(Color.RED == ExtendedColor.RED)
 
     class OtherColor(Enum):
-        white = 4
-        blue = 5
+        WHITE = 4
+        BLUE = 5
 
     class MergedColor(Color, OtherColor):
         pass
 
-    print(MergedColor.red)
-    print(MergedColor.white)
+    print(MergedColor.RED)
+    print(MergedColor.WHITE)
 
     print(Color)
     print(ExtendedColor)
@@ -149,39 +149,39 @@ def _test():
 
 def _test2():
     class Color(FullEnum):
-        red = 1
-        green = 2
-        blue = 3
+        RED = 1
+        GREEN = 2
+        BLUE = 3
 
-    print(Color.red)
+    print(Color.RED)
 
-    print(repr(Color.red))
-    print(Color.red == Color.red)
-    print(Color.red == Color.blue)
-    print(Color.red == 1)
-    print(Color.red == 2)
+    print(repr(Color.RED))
+    print(Color.RED == Color.RED)
+    print(Color.RED == Color.BLUE)
+    print(Color.RED == 1)
+    print(Color.RED == 2)
 
     class ExtendedColor(Color):
-        white = 0
-        orange = 4
-        yellow = 5
-        purple = 6
-        black = 7
+        WHITE = 0
+        ORANGE = 4
+        YELLOW = 5
+        PURPLE = 6
+        BLACK = 7
 
-    print(ExtendedColor.orange)
-    print(ExtendedColor.red)
+    print(ExtendedColor.ORANGE)
+    print(ExtendedColor.RED)
 
-    print(Color.red == ExtendedColor.red)
+    print(Color.RED == ExtendedColor.RED)
 
     class OtherColor(FullEnum):
-        white = 4
-        blue = 5
+        WHITE = 4
+        BLUE = 5
 
     class MergedColor(Color, OtherColor):
         pass
 
-    print(MergedColor.red)
-    print(MergedColor.white)
+    print(MergedColor.RED)
+    print(MergedColor.WHITE)
 
     print(Color)
     print(ExtendedColor)
