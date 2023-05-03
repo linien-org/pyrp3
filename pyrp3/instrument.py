@@ -295,7 +295,7 @@ class Scope(MemoryInterface):
         self.arm_trigger()
 
     def rearm(self, frequency=None, trigger_source=8):
-        if not frequency is None:
+        if frequency is not None:
             self.frequency = frequency
         self.trigger_delay = self.data_length
         self.trigger_source = trigger_source
@@ -515,7 +515,7 @@ class ASG(MemoryInterface):
         self.sm_reset = False
 
     def trig(self, frequency=None):
-        if not frequency is None:
+        if frequency is not None:
             self.frequency = frequency
         self.start_offset = 0
         self.trig_selector = 1
@@ -582,7 +582,7 @@ class Pid(MemoryInterface):
 
     def initialize(self, setpoint=None, integral=0, proportional=0, derivative=0):
         self.reset = True
-        if not setpoint is None:
+        if setpoint is not None:
             self.setpoint = setpoint
         self.integral = integral
         self.proportional = proportional
