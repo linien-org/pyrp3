@@ -14,7 +14,7 @@ setup(
     maintainer_email="leykauf@physik.hu-berlin.de",
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    packages=["pyrp3", "pyrp3.enum"],
+    packages=["pyrp3"],
     install_requires=["myhdl", "rpyc", "cached_property", "numpy"],
     classifiers=[
         "Intended Audience :: Developers",
