@@ -7,7 +7,7 @@ from .enum import Enum
 from .memory import MemoryInterface
 
 
-class UnsignedInteger(object):
+class UnsignedInteger:
     def __init__(self, size):
         self.size = size
 
@@ -18,7 +18,7 @@ class UnsignedInteger(object):
         return intbv(val, max=2**self.size, min=0)._val
 
 
-class SignedInteger(object):
+class SignedInteger:
     def __init__(self, size):
         self.size = size
 
@@ -90,7 +90,7 @@ class PWMDAC(UnsignedInteger):
         return out[32:]._val
 
 
-class RegisterProperty(object):
+class RegisterProperty:
     def __init__(self, addr, register_type, size=None):
         if isinstance(register_type, type) and issubclass(register_type, Enum):
             register_type = EnumTypeWrapper(register_type)
@@ -121,7 +121,7 @@ class GetSetRegister(SetRegister, GetRegister):
     pass
 
 
-class GetSetBit(object):
+class GetSetBit:
     def __init__(self, addr, pos, bit_type=None):
         self._bit_type = bit_type
         self.addr = addr
@@ -590,7 +590,7 @@ class Pid(MemoryInterface):
         self.reset = False
 
 
-class InterfaceDescriptor(object):
+class InterfaceDescriptor:
     def __init__(self, cls, **kwd):
         self._cls = cls
         self.kwd = kwd
@@ -601,7 +601,7 @@ class InterfaceDescriptor(object):
         return self._cls(parent_memory=instance, **self.kwd)
 
 
-class RedPitaya(object):
+class RedPitaya:
     hk = InterfaceDescriptor(HK)
     ams = InterfaceDescriptor(AMS)
     scope = InterfaceDescriptor(Scope)
