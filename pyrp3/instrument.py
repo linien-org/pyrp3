@@ -36,7 +36,6 @@ class SignedInteger:
 class EnumTypeWrapper(UnsignedInteger):
     def __init__(self, enum_type):
         self._enum_type = enum_type
-        maximum = max(self._enum_type._reverse_dct.keys())
         size = int(ceil(log(16, 2)))
         super(EnumTypeWrapper, self).__init__(size=size)
 
