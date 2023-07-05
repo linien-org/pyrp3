@@ -24,7 +24,12 @@ setup(
     long_description=long_description,
     long_description_content_type="text/x-rst",
     packages=["pyrp3"],
-    install_requires=["myhdl", "rpyc", "cached_property", "numpy"],
+    install_requires=[
+        "myhdl>=0.11",
+        "rpyc>=4.0,<5.0",
+        "cached_property>=1.5.2",
+        "numpy>=1.11.0",
+    ],
     classifiers=[
         "Intended Audience :: Developers",
         "Intended Audience :: Education",
