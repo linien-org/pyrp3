@@ -1,3 +1,1 @@
-import importlib_metadata
-
-__version__ = importlib_metadata.version("pyrp3")  # noqa: F401
+from ._version import __version__  # noqa F401

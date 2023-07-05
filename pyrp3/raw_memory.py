@@ -15,7 +15,7 @@ libmonitor.read_value.restype = c_uint32
 # Specify output types of read_value to uint32
 
 
-class BoardRawMemory(object):
+class BoardRawMemory:
     """Classes uses to interface de RedPitaya memory
 
     This is a one to one match to the libmonitor.so library"""

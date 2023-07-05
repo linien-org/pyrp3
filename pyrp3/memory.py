@@ -1,4 +1,4 @@
-class MemoryInterface(object):
+class MemoryInterface:
     def __init__(self, addr_base=0x00000000, parent_memory=None):
         self.addr_base = addr_base
         self._parent = parent_memory

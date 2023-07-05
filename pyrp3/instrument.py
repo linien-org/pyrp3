@@ -7,7 +7,7 @@ from .enum import Enum
 from .memory import MemoryInterface
 
 
-class UnsignedInteger(object):
+class UnsignedInteger:
     def __init__(self, size):
         self.size = size
 
@@ -18,7 +18,7 @@ class UnsignedInteger(object):
         return intbv(val, max=2**self.size, min=0)._val
 
 
-class SignedInteger(object):
+class SignedInteger:
     def __init__(self, size):
         self.size = size
 
@@ -36,7 +36,6 @@ class SignedInteger(object):
 class EnumTypeWrapper(UnsignedInteger):
     def __init__(self, enum_type):
         self._enum_type = enum_type
-        maximum = max(self._enum_type._reverse_dct.keys())
         size = int(ceil(log(16, 2)))
         super(EnumTypeWrapper, self).__init__(size=size)
 
@@ -90,7 +89,7 @@ class PWMDAC(UnsignedInteger):
         return out[32:]._val
 
 
-class RegisterProperty(object):
+class RegisterProperty:
     def __init__(self, addr, register_type, size=None):
         if isinstance(register_type, type) and issubclass(register_type, Enum):
             register_type = EnumTypeWrapper(register_type)
@@ -121,7 +120,7 @@ class GetSetRegister(SetRegister, GetRegister):
     pass
 
 
-class GetSetBit(object):
+class GetSetBit:
     def __init__(self, addr, pos, bit_type=None):
         self._bit_type = bit_type
         self.addr = addr
@@ -139,13 +138,6 @@ class GetSetBit(object):
         new_value = intbv(current)
         new_value[self.pos] = value
         return instance.write(self.addr, int(new_value))
-
-
-# class EnumRegister(GetSetRegister):
-#    def __init__(self, addr, enum_type):
-#        assert issubclass(enum_type, Enum)
-#        register_type = EnumType(enum_type)
-#        super(EnumRegister, self).__init__(addr, register_type)
 
 
 class HK(MemoryInterface):
@@ -200,10 +192,10 @@ class AMS(MemoryInterface):
 class TriggerSource(Enum):
     none = 0
     immediately = 1
-    chA_posedge = 2
-    chA_negedge = 3
-    chB_posedge = 4
-    chB_negedge = 5
+    cha_posedge = 2
+    cha_negedge = 3
+    chb_posedge = 4
+    chb_negedge = 5
     ext_posedge = 6
     ext_negedge = 7
     awg_posedge = 8
@@ -248,7 +240,7 @@ class Scope(MemoryInterface):
     dac2_on_ch1 = GetSetBit(0x50, pos=0)
     dac1_on_ch2 = GetSetBit(0x50, pos=1)
 
-    ## Function specific to read the array of data
+    # Function specific to read the array of data
     def get_rawdata(self, addr):
         x = self.reads(addr, self.data_length)
         y = x.copy()
@@ -295,7 +287,7 @@ class Scope(MemoryInterface):
         self.arm_trigger()
 
     def rearm(self, frequency=None, trigger_source=8):
-        if not frequency is None:
+        if frequency is not None:
             self.frequency = frequency
         self.trigger_delay = self.data_length
         self.trigger_source = trigger_source
@@ -515,7 +507,7 @@ class ASG(MemoryInterface):
         self.sm_reset = False
 
     def trig(self, frequency=None):
-        if not frequency is None:
+        if frequency is not None:
             self.frequency = frequency
         self.start_offset = 0
         self.trig_selector = 1
@@ -582,7 +574,7 @@ class Pid(MemoryInterface):
 
     def initialize(self, setpoint=None, integral=0, proportional=0, derivative=0):
         self.reset = True
-        if not setpoint is None:
+        if setpoint is not None:
             self.setpoint = setpoint
         self.integral = integral
         self.proportional = proportional
@@ -590,7 +582,7 @@ class Pid(MemoryInterface):
         self.reset = False
 
 
-class InterfaceDescriptor(object):
+class InterfaceDescriptor:
     def __init__(self, cls, **kwd):
         self._cls = cls
         self.kwd = kwd
@@ -601,7 +593,7 @@ class InterfaceDescriptor(object):
         return self._cls(parent_memory=instance, **self.kwd)
 
 
-class RedPitaya(object):
+class RedPitaya:
     hk = InterfaceDescriptor(HK)
     ams = InterfaceDescriptor(AMS)
     scope = InterfaceDescriptor(Scope)
@@ -613,21 +605,10 @@ class RedPitaya(object):
     asgb = InterfaceDescriptor(ASG, channel="B")
 
 
-# class BoardRedPitaya(RedPitaya, BoardRawMemory):
-#    pass
-
-
-# class PCRedPitaya(RedPitaya, ClientMemory):
-#    pass
-
 if __name__ == "__main__":
     from time import sleep, time
 
-    import rpyc
-
-    #    conn = rpyc.connect('134.157.6.206', 18861)
-    #    red_pitaya = PCRedPitaya(remote_connection = conn)
-    red_pitaya = BoardRedPitaya()
+    red_pitaya = RedPitaya()
     red_pitaya.scope.arm_trigger()
     red_pitaya.scope.trigger_source = 1
     sleep(1)

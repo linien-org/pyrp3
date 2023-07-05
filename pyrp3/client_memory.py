@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class ClientMemory(object):
+class ClientMemory:
     def __init__(self, remote_connection):
         self.remote_connection = remote_connection
         self.remote_interface = remote_connection.root.mem()
