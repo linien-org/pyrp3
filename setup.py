@@ -2,7 +2,8 @@ import re
 from distutils.core import Extension, setup
 from pathlib import Path
 
-VERSIONFILE = "myniftyapp/_version.py"
+# from https://stackoverflow.com/a/7071358/2750945
+VERSIONFILE = "pyrp3/_version.py"
 verstrline = open(VERSIONFILE, "rt").read()
 VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
 mo = re.search(VSRE, verstrline, re.M)
