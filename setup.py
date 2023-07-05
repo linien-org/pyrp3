@@ -15,7 +15,7 @@ long_description = (this_directory / "README.rst").read_text()
 
 setup(
     name="pyrp3",
-    version="1.1.2",
+    version="1.2.0",
     description="Python utilities for redpitaya",
     author="Pierre Cladé",
     author_email="pierre.clade@upmc.fr",
