@@ -199,5 +199,3 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Custom rules
-pyrp3/_version.py

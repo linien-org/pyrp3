@@ -1,12 +1,21 @@
+import re
 from distutils.core import Extension, setup
 from pathlib import Path
 
+VERSIONFILE = "myniftyapp/_version.py"
+verstrline = open(VERSIONFILE, "rt").read()
+VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
+mo = re.search(VSRE, verstrline, re.M)
+if mo:
+    verstr = mo.group(1)
+else:
+    raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE,))
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.rst").read_text()
 
 setup(
     name="pyrp3",
-    version="1.1.1",
+    version="1.1.2",
     description="Python utilities for redpitaya",
     author="Pierre Cladé",
     author_email="pierre.clade@upmc.fr",
