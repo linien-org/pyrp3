@@ -3,39 +3,39 @@ from pyrp3.enum import Enum
 
 def test_enum():
     class Color(Enum):
-        RED = 1
-        GREEN = 2
+        red = 1
+        green = 2
         blue = 3
 
     print(Color.red)
 
     print(repr(Color.red))
-    print(Color.RED == Color.red)
-    print(Color.RED == Color.blue)
-    print(Color.RED == 1)
-    print(Color.RED == 2)
+    print(Color.red == Color.red)
+    print(Color.red == Color.blue)
+    print(Color.red == 1)
+    print(Color.red == 2)
 
     class ExtendedColor(Color):
-        WHITE = 0
-        ORANGE = 4
-        YELLOW = 5
-        PURPLE = 6
-        BLACK = 7
+        white = 0
+        orange = 4
+        yellow = 5
+        purple = 6
+        black = 7
 
-    print(ExtendedColor.ORANGE)
-    print(ExtendedColor.RED)
+    print(ExtendedColor.orange)
+    print(ExtendedColor.red)
 
-    print(Color.RED == ExtendedColor.RED)
+    print(Color.red == ExtendedColor.red)
 
     class OtherColor(Enum):
-        WHITE = 4
-        BLUE = 5
+        white = 4
+        blue = 5
 
     class MergedColor(Color, OtherColor):
         pass
 
-    print(MergedColor.RED)
-    print(MergedColor.WHITE)
+    print(MergedColor.red)
+    print(MergedColor.white)
 
     print(Color)
     print(ExtendedColor)

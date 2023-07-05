@@ -190,16 +190,16 @@ class AMS(MemoryInterface):
 
 
 class TriggerSource(Enum):
-    NONE = 0
-    IMMEDIATELY = 1
-    CHA_POSEDGE = 2
-    CHA_NEGEDGE = 3
-    CHB_POSEDGE = 4
-    CHB_NEGEDGE = 5
-    EXT_POSEDGE = 6
-    EXT_NEGEDGE = 7
-    AWG_POSEDGE = 8
-    AWG_NEGEDGE = 9
+    none = 0
+    immediately = 1
+    cha_posedge = 2
+    cha_negedge = 3
+    chb_posedge = 4
+    chb_negedge = 5
+    ext_posedge = 6
+    ext_negedge = 7
+    awg_posedge = 8
+    awg_negedge = 9
 
 
 class Decimation(UnsignedInteger):
@@ -274,7 +274,7 @@ class Scope(MemoryInterface):
             endpoint=False,
         )
 
-    def setup(self, frequency=1, trigger_source=TriggerSource.IMMEDIATELY):
+    def setup(self, frequency=1, trigger_source=TriggerSource.immediately):
         self.reset_writestate_machine(v=True)
         self.trigger_delay = self.data_length
         self.dac1_on_ch2 = False
