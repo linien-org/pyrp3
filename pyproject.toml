@@ -8,7 +8,9 @@ description = "Python utilities for RedPitaya"
 dynamic = ["version"]
 authors = [
     { name = "Pierre Cladé", email = "pierre.clade@upmc.fr" },
+    { name = "Benjamin Wiegand", email = "benjamin.wiegand@physik.hu-berlin.de" },
     { name = "Bastian Leykauf", email = "leykauf@physik.hu-berlin.de" },
+    { name = "Doron Behar", email = "doron.behar@gmail.com" },
 ]
 maintainers = [
     { name = "Bastian Leykauf", email = "leykauf@physik.hu-berlin.de" },
