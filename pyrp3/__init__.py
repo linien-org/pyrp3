@@ -1,1 +1,7 @@
-from ._version import __version__  # noqa F401
+from importlib.metadata import PackageNotFoundError, version
+
+try:
+    __version__ = version("package-name")
+except PackageNotFoundError:
+    # package is not installed
+    pass
