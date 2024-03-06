@@ -1,7 +1,6 @@
 from math import ceil, log
 
 import numpy as np
-from myhdl import intbv
 
 from .enum import Enum
 from .memory import MemoryInterface
@@ -12,10 +11,14 @@ class UnsignedInteger:
         self.size = size
 
     def to_python(self, val):
-        return int(val & (2**self.size - 1))
+        if not 0 <= val < (1 << self.size):
+            raise ValueError("Input value %s exceeds %s-bit limit" % (val, self.size))
+        return int(val & ((1 << self.size) - 1))
 
     def to_binary(self, val):
-        return intbv(val, max=2**self.size, min=0)._val
+        if not 0 <= val < (1 << self.size):
+            raise ValueError("Input value %s exceeds %s-bit limit" % (val, self.size))
+        return val & ((1 << self.size) - 1)
 
 
 class SignedInteger:
@@ -23,14 +26,23 @@ class SignedInteger:
         self.size = size
 
     def to_python(self, val):
-        return int(
-            intbv(val & (2**self.size - 1), min=0, max=2**self.size).signed()
-        )
+        val &= (1 << self.size) - 1
+        if val >= (1 << (self.size - 1)):
+            val -= 1 << self.size
+        if not -(1 << (self.size - 1)) <= val < (1 << (self.size - 1)):
+            raise ValueError(
+                "Input value %s exceeds %s-bit signed limit" % (val, self.size)
+            )
+        return int(val)
 
     def to_binary(self, val):
-        return intbv(val, min=-(2 ** (self.size - 1)), max=2 ** (self.size - 1))[
-            self.size :
-        ]._val
+        if not -(1 << (self.size - 1)) <= val < (1 << self.size):
+            raise ValueError(
+                "Input value %s exceeds %s-bit signed limit" % (val, self.size)
+            )
+        if val < 0:
+            val += 1 << self.size
+        return val & ((1 << self.size) - 1)
 
 
 class EnumTypeWrapper(UnsignedInteger):
@@ -82,11 +94,10 @@ class PWMDAC(UnsignedInteger):
         val = val / 1.8
         assert val >= 0
         assert val <= 1
-        out = intbv(0, min=0, max=2**32)
-        tmp = np.long(np.round(val * (17 * 157 - 1)))
-        out[32:16] = tmp // 17
-        out[16:0] = 2**tmp % 17 - 1
-        return out[32:]._val
+        tmp = np.longlong(np.round(val * (17 * 157 - 1)))
+        high = tmp // 17
+        low = (1 << (tmp % 17)) - 1
+        return (high << 16) | low
 
 
 class RegisterProperty:
@@ -130,13 +141,14 @@ class GetSetBit:
         if instance is None:
             return self
         out = instance.read(self.addr)
-        val = intbv(out)[self.pos]
-        return val if self._bit_type is None else self._bit_type.to_python(val)
+        val = (out >> self.pos) & 1
+        return (
+            bool(val) if self._bit_type is None else self._bit_type.to_python(bool(val))
+        )
 
     def __set__(self, instance, value):
         current = instance.read(self.addr)
-        new_value = intbv(current)
-        new_value[self.pos] = value
+        new_value = current & ~(1 << self.pos) | ((value & 1) << self.pos)
         return instance.write(self.addr, int(new_value))
 
 
