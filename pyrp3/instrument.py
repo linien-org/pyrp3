@@ -23,9 +23,7 @@ class SignedInteger:
         self.size = size
 
     def to_python(self, val):
-        return int(
-            intbv(val & (2**self.size - 1), min=0, max=2**self.size).signed()
-        )
+        return int(intbv(val & (2**self.size - 1), min=0, max=2**self.size).signed())
 
     def to_binary(self, val):
         return intbv(val, min=-(2 ** (self.size - 1)), max=2 ** (self.size - 1))[
