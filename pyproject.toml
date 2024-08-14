@@ -11,6 +11,7 @@ authors = [
     { name = "Benjamin Wiegand", email = "benjamin.wiegand@physik.hu-berlin.de" },
     { name = "Bastian Leykauf", email = "leykauf@physik.hu-berlin.de" },
     { name = "Doron Behar", email = "doron.behar@gmail.com" },
+    { name = "Florian Agbuya", email = "fa@m-labs.ph" },
 ]
 maintainers = [
     { name = "Bastian Leykauf", email = "leykauf@physik.hu-berlin.de" },
