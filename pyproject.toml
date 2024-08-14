@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyrp3"
-version = "2.1.0rc1"
+version = "2.1.0"
 description = "Python utilities for RedPitaya"
 authors = [
     { name = "Pierre Cladé", email = "pierre.clade@upmc.fr" },
