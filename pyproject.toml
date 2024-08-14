@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools >= 30.3.0", "wheel", "setuptools_scm[toml]>=6.2"]
+requires = ["setuptools >= 30.3.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyrp3"
+version = "2.1.0.dev0"
 description = "Python utilities for RedPitaya"
-dynamic = ["version"]
 authors = [
     { name = "Pierre Cladé", email = "pierre.clade@upmc.fr" },
     { name = "Benjamin Wiegand", email = "benjamin.wiegand@physik.hu-berlin.de" },
@@ -19,9 +19,9 @@ license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "cached_property>=1.5.2",
-    "numpy>=1.21.5",
-    "rpyc>=5.0,<6.0",
+    "cached_property>=1.5.2,<2.0",
+    "numpy>=1.21.5,<2.0",
+    "rpyc>=6.0.0,<7.0",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -40,13 +40,10 @@ dev = [
     "flake8>=5.0.4",
     "isort>=5.10.1",
     "flake8-pyproject>=1.2.3",
-    "setuptools_scm>=6.2",
 ]
 
 [tool.setuptools]
 packages = ["pyrp3"]
-
-[tool.setuptools_scm]
 
 [project.urls]
 homepage = "https://github.com/linien-org/pyrp3/"
