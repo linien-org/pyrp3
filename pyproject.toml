@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyrp3"
-version = "2.0.2"
+version = "2.1.0"
 description = "Python utilities for RedPitaya"
 authors = [
     { name = "Pierre Cladé", email = "pierre.clade@upmc.fr" },
     { name = "Benjamin Wiegand", email = "benjamin.wiegand@physik.hu-berlin.de" },
     { name = "Bastian Leykauf", email = "leykauf@physik.hu-berlin.de" },
     { name = "Doron Behar", email = "doron.behar@gmail.com" },
+    { name = "Florian Agbuya", email = "fa@m-labs.ph" },
 ]
 maintainers = [
     { name = "Bastian Leykauf", email = "leykauf@physik.hu-berlin.de" },
@@ -20,7 +21,6 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "cached_property>=1.5.2,<2.0",
-    "myhdl>=0.11",
     "numpy>=1.21.5,<2.0",
     "rpyc>=6.0.0,<7.0",
 ]
